@@ -10,27 +10,122 @@ html {
     height: 100%;
 }
 
-div#carousel {
-    height: 46vh;
-    width: 100%;
-     max-height: 628px;
-    -webkit-transition: all .3s ease-in-out;
-    -moz-transition: all .3s ease-in-out;
-    transition: all .3s ease-in-out;
-    display: flex;
-    justify-content: center;
+#carousel{
+    position: relative;
+    width: 800px;
+    margin: auto;
 }
 
-div#carousel a {
+#carousel img{
     width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    border-radius: 20px;
 }
 
-a img {
-    height: 100%;
-    width: 50%;
+/* BOTÕES */
+
+#esquerda,
+#direita{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 55px;
+    height: 55px;
+
+    border: none;
+    border-radius: 50%;
+
+    cursor: pointer;
+
+    font-size: 22px;
+    font-weight: bold;
+    color: white;
+
+    background: rgba(255,255,255,0.12);
+
+    backdrop-filter: blur(10px);
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease;
+
+    z-index: 10;
+    
+}
+
+/* POSIÇÃO */
+
+#esquerda{
+    left: 20px;
+    
+}
+#direita{
+    right: 20px;
+    
+}
+
+/* HOVER */
+
+#esquerda:hover,
+#direita:hover{
+
+    background: rgba(255,255,255,0.25);
+
+    transform:
+        translateY(-50%)
+        scale(1.1);
+
+    box-shadow:
+        0 0 15px rgba(255,255,255,0.4);
+        
+}
+
+/* CLIQUE */
+
+#esquerda:active,
+#direita:active{
+
+    transform:
+        translateY(-50%)
+        scale(0.95);
+}
+
+#esquerda,
+#direita{
+    opacity: 0;
+}
+
+#carousel:hover #esquerda,
+#carousel:hover #direita{
+    opacity: 1;
+}
+#carousel-dots{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.dot{
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: gray;
+    cursor: pointer;
+
+    transition:
+        background-color 0.4s ease,
+        transform 0.4s ease,
+        opacity 0.4s ease;
+
+    opacity: 0.5;
+}
+
+.dot.active{
+    background-color: rgb(71, 68, 250);
+    transform: scale(1.4);
+    opacity: 1;
 }
 
 div#carousel-title a {
@@ -44,9 +139,7 @@ div#carousel-title  {
     margin-bottom: 10px;
     font-weight: bold;
 }
-#esquerda{
- margin: 1%;
-}
+
 
 header ul {
     text-align: center;
