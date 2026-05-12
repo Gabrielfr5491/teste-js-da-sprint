@@ -22,7 +22,7 @@ class Carousel {
                
                 Carousel._interval = setInterval(function() { 
                     Carousel.Next(); 
-                }, 5000);
+                }, 2000);
             }
         } else {
             throw "Method Start need a Array Variable.";
@@ -39,9 +39,11 @@ class Carousel {
         if (container && titleContainer) {
             container.innerHTML = `
                 <a href="${item.link}">
-                    <img src="img/${item.image}" style="width:50%; transition: opacity 0.5s ease-in-out   ;">
+                    <button id = "esquerda"><</button>
+                        <img src="img/${item.image}" style="width:50%; transition: opacity 0.5s ease-in-out ;">
+                    <button id="direita">></button>
                 </a>`;
-            titleContainer.innerHTML = `<h2>${item.title}</h2>`;
+            titleContainer.innerHTML = `<p>${item.title}</p>`;
         }
 
         Carousel._sequence++;
@@ -49,4 +51,5 @@ class Carousel {
             Carousel._sequence = 0; 
         }    
     }
+
 }

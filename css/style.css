@@ -17,6 +17,20 @@ div#carousel {
     -webkit-transition: all .3s ease-in-out;
     -moz-transition: all .3s ease-in-out;
     transition: all .3s ease-in-out;
+    display: flex;
+    justify-content: center;
+}
+
+div#carousel a {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+a img {
+    height: 100%;
+    width: 100%;
 }
 
 div#carousel-title a {

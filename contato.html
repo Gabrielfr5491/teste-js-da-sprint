@@ -8,7 +8,8 @@
     <link href="css/reset.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <link href="css/form.css" rel="stylesheet">
-    <script src="js/form.js"></script>
+    <script src="js/form.js" defer></script>
+
 </head>
 <body>
     <header>       
@@ -39,8 +40,8 @@
                 <h2 class="titulo">Sobre Você</h2>
             <form onsubmit="Post(this);">
                 <input type="text" name="nome" placeholder="NOME*" id="nomeid" class="fordform" required>
-                <input type="text" name="email" placeholder="E-MAIL*" class="fordform" required>
-                <input type="text" name="cpf" placeholder="CPF*" class="fordform" required>
+                <input type="text" name="email" placeholder="E-MAIL*" id="emailid" class="fordform" required>
+                <input type="text" name="cpf" placeholder="CPF*" id="cpfid" class="fordform" required>
                 <input type="text" name="sobrenome" placeholder="SOBRENOME*" class="fordform" required>
                 <input type="text" name="telefone" placeholder="TELEFONE*" class="fordform" required>
                 <select name="contato" class="fordform" required>
@@ -48,7 +49,7 @@
                     <option>TELEFONE</option>
                     <option>E-MAIL</option>
                 </select>
-            <button type="submit">Enviar</button>
+            <button type="submit" name="enviar">Enviar</button>
             </form>
             </div>
         </div>
