@@ -30,7 +30,7 @@ div#carousel a {
 
 a img {
     height: 100%;
-    width: 100%;
+    width: 50%;
 }
 
 div#carousel-title a {
@@ -43,6 +43,9 @@ div#carousel-title  {
     margin-top: 10px;
     margin-bottom: 10px;
     font-weight: bold;
+}
+#esquerda{
+ margin: 1%;
 }
 
 header ul {
