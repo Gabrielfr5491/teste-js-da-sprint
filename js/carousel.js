@@ -3,6 +3,7 @@ let carouselArr = [];
 class Carousel {
 
     constructor(image, title, link) {
+
         this.image = image;
         this.title = title;
         this.link = link;
@@ -10,8 +11,11 @@ class Carousel {
 
     static Start(arr) {
 
-        if (!arr || arr.length <= 0) {
-            throw "Method Start need a Array Variable.";
+        if(arr.length <= 0){
+
+            alert("Array vazio");
+
+            return;
         }
 
         Carousel._items = arr;
@@ -20,76 +24,83 @@ class Carousel {
 
         Carousel.Next();
 
-        Carousel._interval = setInterval(() => {
+        setInterval(() => {
 
             Carousel._sequence++;
 
-            if (Carousel._sequence >= Carousel._size) {
+            if(Carousel._sequence >= Carousel._size){
+
                 Carousel._sequence = 0;
             }
-
             Carousel.Next();
 
         }, 7000);
     }
 
-   static Next() {
+    static Next() {
 
-    const container = document.getElementById("carousel");
-    const titleContainer = document.getElementById("carousel-title");
-    const dotsContainer = document.getElementById("carousel-dots");
+        let container = document.getElementById("carousel");
+        let titleContainer = document.getElementById("carousel-title");
+        let dotsContainer = document.getElementById("carousel-dots");
 
-    let item = Carousel._items[Carousel._sequence];
+        let item = Carousel._items[Carousel._sequence];
 
-    container.innerHTML = `
-        <button id="esquerda"><</button>
-        <img src="img/${item.image}">
-        <button id="direita">></button>
-    `;
+        container.innerHTML = `
+        
+            <button id="esquerda"><</button>
 
-    titleContainer.innerHTML = `<p>${item.title}</p>`;
+            <img src="img/${item.image}">
 
-    dotsContainer.innerHTML = "";
+            <button id="direita">></button>
+        `;
 
-    Carousel._items.forEach((_, index) => {
+        titleContainer.innerHTML = `<p>${item.title}</p>`;
 
-        const dot = document.createElement("div");
+        dotsContainer.innerHTML = "";
 
-        dot.classList.add("dot");
+        for(let i = 0; i < Carousel._size; i++){
 
-        if(index === Carousel._sequence){
-            dot.classList.add("active");
+            let dot = document.createElement("div");
+
+            dot.classList.add("dot");
+
+            if(i == Carousel._sequence){
+
+                dot.classList.add("active");
+            }
+
+            dot.onclick = () => {
+
+                Carousel._sequence = i;
+
+                Carousel.Next();
+            };
+
+            dotsContainer.appendChild(dot);
         }
 
-        dot.onclick = () => {
-            Carousel._sequence = index;
+        document.getElementById("esquerda").onclick = () => {
+
+            Carousel._sequence--;
+
+            if(Carousel._sequence < 0){
+
+                Carousel._sequence = Carousel._size - 1;
+            }
+
             Carousel.Next();
-        }
+        };
 
-        dotsContainer.appendChild(dot);
+        document.getElementById("direita").onclick = () => {
 
-    });
+            Carousel._sequence++;
 
-    document.getElementById("esquerda").onclick = () => {
+            if(Carousel._sequence >= Carousel._size){
 
-        Carousel._sequence--;
+                Carousel._sequence = 0;
+            }
 
-        if (Carousel._sequence < 0) {
-            Carousel._sequence = Carousel._size - 1;
-        }
-
-        Carousel.Next();
-    };
-
-    document.getElementById("direita").onclick = () => {
-
-        Carousel._sequence++;
-
-        if (Carousel._sequence >= Carousel._size) {
-            Carousel._sequence = 0;
-        }
-
-        Carousel.Next();
-    };
-    };
-};
+            Carousel.Next();
+        };
+    }
+}
